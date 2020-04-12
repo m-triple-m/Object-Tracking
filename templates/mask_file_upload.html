@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid mt-5">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Masking for Tracking Objects</h1>
+            <p class="lead">Upload an image to start masking</p>
+            <hr class="my-2">
+            <form method="POST" enctype="multipart/form-data">
+                <label>Upload File for Masking</label>
+                <input type="file" name="file" class="btn">
+                <button class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}
