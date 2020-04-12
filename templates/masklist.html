@@ -10,6 +10,7 @@
                 <th>Original Image</th>
                 <th>Masked Image</th>
                 <th>Created</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +18,8 @@
             <tr>
                 <td><img src="{{data.filename}}" class="img-fluid" style="height: 100px;"></td>
                 <td><img src="{{data.mask_filename}}" class="img-fluid" style="height: 100px;"></td>
-                <td><p class="h2">{{data.created}}</p><a href = "/maskdetail?id={{data.id}}" class="btn btn-primary">View Details</a><a href = "/selectmask?id={{data.id}}" class="btn btn-warning">Use Mask</a></td>
+                <td><p class="h3">{{data.created}}</p><a href = "/maskdetail?id={{data.id}}" class="btn btn-primary">View Details</a><a href = "/selectmask?id={{data.id}}" class="btn btn-warning">Use Mask</a></td>
+                <td><button class="btn btn-danger mt-5" onclick="del('{{data.id}}')">Delete</button></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -28,7 +30,24 @@
 {% block js %}
 <script>
     $(document).ready(() => {
-        
+        del = (id) => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+                }).then((result) => {
+                    if(result.value){
+                        $.get('/delmask', {id : id}, (data) => {
+                            console.log(data);
+                            location.reload(true);
+                        })
+                    }
+                })
+        }
     })
 </script>
 

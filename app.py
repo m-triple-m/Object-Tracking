@@ -129,6 +129,14 @@ def maskDetails():
 	mask = Mask.query.filter_by(id = id).first()
 	return render_template('maskdetail.html', maskdata = mask)
 
+@app.route('/delmask')
+def deleteMask():
+	id = request.args.get('id')
+	mask = Mask.query.filter_by(id = id).first()
+	db.session.delete(mask)
+	db.session.commit()
+	return jsonify('success')
+
 if __name__ == "__main__":
     app.run(debug= True)
 
