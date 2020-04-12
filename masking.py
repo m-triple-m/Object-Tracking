@@ -2,7 +2,7 @@ import cv2
 import argparse
 from operator import xor
 from app import getValues
-
+import os
 
 def callback(value):
     pass
@@ -10,35 +10,13 @@ def callback(value):
 
 def setup_trackbars(range_filter):
     cv2.namedWindow("Trackbars", 0)
-
+    cv2.setWindowProperty("Trackbars",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_NORMAL)
+    print('seetin')
     for i in ["MIN", "MAX"]:
         v = 0 if i == "MIN" else 255
 
         for j in range_filter:
             cv2.createTrackbar("%s_%s" % (j, i), "Trackbars", v, 255, callback)
-
-
-# def get_arguments():
-#     ap = argparse.ArgumentParser()
-#     ap.add_argument('-f', '--filter', required=True,
-#                     help='Range filter. RGB or HSV')
-#     ap.add_argument('-i', '--image', required=False,
-#                     help='Path to the image')
-#     ap.add_argument('-w', '--webcam', required=False,
-#                     help='Use webcam', action='store_true')
-#     ap.add_argument('-p', '--preview', required=False,
-#                     help='Show a preview of the image after applying the mask',
-#                     action='store_true')
-#     args = vars(ap.parse_args())
-
-#     if not xor(bool(args['image']), bool(args['webcam'])):
-#         ap.error("Please specify only one image source")
-
-#     if not args['filter'].upper() in ['RGB', 'HSV']:
-#         ap.error("Please speciy a correct filter.")
-
-#     return args
-
 
 def get_trackbar_values(range_filter):
     values = []
@@ -52,60 +30,45 @@ def get_trackbar_values(range_filter):
 
 
 def main(imgPath, filter = 'HSV'):
-    # args = get_arguments()
 
     range_filter = filter
 
     if imgPath:
         image = cv2.imread(imgPath)
-        print('image', image, imgPath)
-        # if range_filter == 'RGB':
-        #     frame_to_thresh = image.copy()
-        # else:
+        # print('image', image, imgPath)
         frame_to_thresh = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     else:
         camera = cv2.VideoCapture(0)
 
-    # setup_trackbars(range_filter)
-
     while True:
-        # if args['webcam']:
-        #     ret, image = camera.read()
-
-        #     if not ret:
-        #         break
-
-        #     if range_filter == 'RGB':
-        #         frame_to_thresh = image.copy()
-        #     else:
-        #         frame_to_thresh = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-
+        
         v1_min, v2_min, v3_min, v1_max, v2_max, v3_max = get_trackbar_values(range_filter)
-        # print(getValues())
-        # v1_min, v2_min, v3_min, v1_max, v2_max, v3_max = getValues()
-
         thresh = cv2.inRange(frame_to_thresh, (v1_min, v2_min, v3_min), (v1_max, v2_max, v3_max))
 
 
         if cv2.waitKey(1) & 0xFF is ord('q'):
             break
         
-        # if args['preview']:
-        #     preview = cv2.bitwise_and(image, image, mask=thresh)
-        #     cv2.imshow("Preview", preview)
-        # else:
-            # combined_image = np.hstack((image, thresh))
-            # cv2.imshow("Original", image)
-            # cv2.imshow("Thresh", thresh)
-            # print(image, thresh.size)
         (flag, encodedImage) = cv2.imencode(".jpg", thresh)
 
-        print('encodedImage')
-
-        # ensure the frame was successfully encoded
         if not flag:
             continue
 
-        # yield the output frame in the byte format
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
             bytearray(encodedImage) + b'\r\n')
+
+
+def convertMask(imgPath):
+    if imgPath:
+        image = cv2.imread(imgPath)
+        frame_to_thresh = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    else:
+        print('Image Path Not Provided')
+
+    v1_min, v2_min, v3_min, v1_max, v2_max, v3_max = get_trackbar_values('HSV')
+    thresh = cv2.inRange(frame_to_thresh, (v1_min, v2_min, v3_min), (v1_max, v2_max, v3_max))
+
+    dest_path = os.path.join('./static/masked_images', 'masked_'+(os.path.basename(imgPath)))
+    cv2.imwrite(dest_path, thresh)
+
+    return dest_path

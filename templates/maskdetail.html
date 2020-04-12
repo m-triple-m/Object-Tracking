@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <p class="text-center display-4">Masked Files</p>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <h4>Created : {{maskdata.created}}</h4>
+                </div>
+                <div class="col-6">
+                    <h4>HSV Masking Values : ( {{maskdata.mask_values}} )</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-3 text-center">
+                <div class="col-6">
+                    <img src="{{maskdata.filename}}" class="img-fluid">
+                    <h5>Original Image</h5>
+                </div>
+                <div class="col-6">
+                    <img src="{{maskdata.mask_filename}}" class="img-fluid">
+                    <h5>Masked Image</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(() => {
+        
+    })
+</script>
+
+{% endblock %}

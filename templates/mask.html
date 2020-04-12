@@ -17,6 +17,9 @@
         <div class="col-md-8">
             <a href="/trackobject" class="btn btn-danger btn-block mt-5">Start Tracking -></a>
         </div>
+        <div class="col-md-8">
+            <button class="btn btn-danger btn-block mt-5" id="save-mask">Save Mask Image</button>
+        </div>
     </div>
 
     <!-- <input type="number" class="range-in" name = "v1_min" value = "0">
@@ -33,6 +36,7 @@
 <script>
     $(document).ready(() => {
         $('#toggle').click(() => {
+            console.log('dsdsd')
             $('#track-area').append(`<img src="{{ url_for('getThreshImage') }}" class="img-fluid">`)
         })
 
@@ -69,6 +73,17 @@
             },
         });
     });
+    $('#save-mask').click(() => {
+        $.get('/savemask', {}, (data) => {
+            if(data == 'success')
+                Swal.fire({
+                    icon : 'success',
+                    title : 'Success',
+                    text : 'Masked Image have been saved successfully!!'
+                })
+        })
+    })
+
     })
 </script>
 

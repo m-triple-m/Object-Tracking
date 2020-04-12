@@ -14,6 +14,7 @@ class Object_Tracker():
 		self.path = path
 		self.greenLower = tuple(colorRange[:3])
 		self.greenUpper = tuple(colorRange[3:])
+		self.buffer = buffer
 
 		# initialize the list of tracked points, the frame counter,
 		# and the coordinate deltas
@@ -139,7 +140,7 @@ class Object_Tracker():
 
 			# otherwise, compute the thickness of the line and
 			# draw the connecting lines
-			thickness = int(np.sqrt(buffer / float(i + 1)) * 2.5)
+			thickness = int(np.sqrt(self.buffer / float(i + 1)) * 2.5)
 			cv2.line(frame, self.pts[i - 1], self.pts[i], (0, 0, 255), thickness)
 
 		# show the movement deltas and the direction of movement on
@@ -163,7 +164,7 @@ class Object_Tracker():
 		if not flag:
 			return
 		
-		print('encodedImage')
+		# print('encodedImage')
 		return bytearray(encodedImage)
 		# yield the output frame in the byte format
 		
@@ -182,10 +183,10 @@ class Object_Tracker():
 		# # close all windows
 		# cv2.destroyAllWindows()
 
-def __del__(self):
-	print('destroyed')
-	self.vs.stop()
-	self.vs.release()
+	def __del__(self):
+		print('destroyed')
+		self.vs.stop()
+		self.vs.release()
 
 # USAGE
 # python object_movement.py --video object_tracking_example.mp4

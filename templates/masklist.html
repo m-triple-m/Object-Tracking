@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <p class="text-center display-4">Masked Files</p>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Original Image</th>
+                <th>Masked Image</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datalist %}
+            <tr>
+                <td><img src="{{data.filename}}" class="img-fluid" style="height: 100px;"></td>
+                <td><img src="{{data.mask_filename}}" class="img-fluid" style="height: 100px;"></td>
+                <td><p class="h2">{{data.created}}</p><a href = "/maskdetail?id={{data.id}}" class="btn btn-primary">View Details</a><a href = "/selectmask?id={{data.id}}" class="btn btn-warning">Use Mask</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(() => {
+        
+    })
+</script>
+
+{% endblock %}
