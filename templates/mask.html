@@ -14,10 +14,10 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md">
             <a href="/trackobject" class="btn btn-danger btn-block mt-5">Start Tracking -></a>
         </div>
-        <div class="col-md-8">
+        <div class="col-md">
             <button class="btn btn-danger btn-block mt-5" id="save-mask">Save Mask Image</button>
         </div>
     </div>
@@ -40,19 +40,19 @@
             $('#track-area').append(`<img src="{{ url_for('getThreshImage') }}" class="img-fluid">`)
         })
 
-        $('.range-in').change(() => {
-            const v1_min = $('input[name = "v1_min"]').val()
-            const v2_min = $('input[name = "v2_min"]').val()
-            const v3_min = $('input[name = "v3_min"]').val()
-            const v1_max = $('input[name = "v1_max"]').val()
-            const v2_max = $('input[name = "v2_max"]').val()
-            const v3_max = $('input[name = "v3_max"]').val()
-            console.log('dsdsdsd')
-            $.get('/input', { v1_min : v1_min, v2_min : v2_min, v3_min : v3_min, v1_max : v1_max, v2_max : v2_max, v3_max : v3_max }, (data) => {
+        // $('.range-in').change(() => {
+        //     const v1_min = $('input[name = "v1_min"]').val()
+        //     const v2_min = $('input[name = "v2_min"]').val()
+        //     const v3_min = $('input[name = "v3_min"]').val()
+        //     const v1_max = $('input[name = "v1_max"]').val()
+        //     const v2_max = $('input[name = "v2_max"]').val()
+        //     const v3_max = $('input[name = "v3_max"]').val()
+        //     console.log('dsdsdsd')
+        //     $.get('/input', { v1_min : v1_min, v2_min : v2_min, v3_min : v3_min, v1_max : v1_max, v2_max : v2_max, v3_max : v3_max }, (data) => {
 
-                console.log(data);
-            })
-        })
+        //         console.log(data);
+        //     })
+        // })
 
         $('#hj').click(() => {
             $.get('/setval');
