@@ -1,10 +1,17 @@
 {% extends 'layout.html' %}
 
+{% block css %}
+<style>
+</style> 
+{% endblock %}
+
+
 {% block body %}
 <div class="container">
-    <div class="card">
-        <div class="card-body" id="track-area">
-            <button class="btn btn-primary" id="toggle">Start tracking</button>
+    <div class="card" style="border-left: 5px solid blue;">
+        <div class="card-body text-center" id="track-area" style="height: 36rem;">
+            <!-- <div  id="to-hide"></div> -->
+            <button class="btn btn-primary btn-block mt-2" id="toggle">Start tracking</button>
         </div>
     </div>
 </div>
@@ -14,7 +21,8 @@
 <script>
     $(document).ready(() => {
         $('#toggle').click(() => {
-            $('#track-area').append(`<img src="{{ url_for('video_feed') }}" class="img-fluid">`)
+            // $('#to-hide').hide()
+            $('#track-area').append(`<img src="{{ url_for('video_feed') }}" class="img-fluid mt-5">`)
         })
     })
 </script>

@@ -45,7 +45,7 @@
                       <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/ext">manage extension</a>
+                      <a class="nav-link" href="/upload">Create new Mask</a>
                     </li>
                     {% if not loggedin %}
                     <li class="nav-item">
@@ -70,7 +70,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                         
                         <div class="text-center">
-                            <a href="/trackobject" class="btn btn-primary btn-block btn-lg">Track Object!</a>
+                            <a href="/upload" class="btn btn-primary btn-block btn-lg">Track Object!</a>
                             <p class="h2 mt-5">Know More</p>
                             <p class="h1"><i class="fa fa-chevron-down"></i></p>
                         </div>
@@ -82,41 +82,6 @@
 
         <section class="features-icons bg-light text-center">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                                    <div class="text-center"><img src="static/junkscan.png" class="img-fluid" width="90px" style="padding-top: 10px;padding-bottom: 17px;"></div>
-                                    <a href="/browser"><h3>Scan Junk</h3></a>
-                                    <p class="lead mb-0">Scan and Clean Junk Files in your System!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                                    <div class="text-center text-primary" ><img src="static/malware.png"  style="height: 110px;padding-top: 20px;padding-bottom: 17px;"></div>
-                                    <a href="/browsemalware"><h3>Scan Malware</h3></a>
-                                    <p class="lead mb-0">Scan dangerous malwares in your System with Machine Learning!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                                    <div class="text-center text-primary" ><img src="static/file.png"  style="height: 110px;padding-top: 20px;padding-bottom: 17px;"></div>
-                                    <a href="/uploadfile"><h3>Scan File</h3></a>
-                                    <p class="lead mb-0">Upload and Scan file for junk and malwares!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row mt-5">
                     <div class="col-lg-4">
@@ -124,7 +89,7 @@
                             <div class="card-body">
                                 <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
                                     <div class="d-flex features-icons-icon"><i class="icon-screen-desktop m-auto text-primary" data-bs-hover-animate="pulse"></i></div>
-                                    <a href="/reportdash"><h3>View Reports</h3></a>
+                                    <a href="/mask"><h3>Create new Mask</h3></a>
                                     <p class="lead mb-0">View Previous Reports of Scans!</p>
                                 </div>
                             </div>
@@ -135,7 +100,7 @@
                             <div class="card-body">
                                 <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
                                     <div class="d-flex features-icons-icon"><i class="icon-layers m-auto text-primary" data-bs-hover-animate="pulse"></i></div>
-                                    <a href="/browser3"><h3>Organize files</h3></a>
+                                    <a href="/trackobject"><h3>Start Tracking</h3></a>
                                     <p class="lead mb-0">Organize your files and folders!</p>
                                 </div>
                             </div>
@@ -146,7 +111,7 @@
                             <div class="card-body">
                                 <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
                                     <div class="d-flex features-icons-icon"><i class="icon-check m-auto text-primary" data-bs-hover-animate="pulse"></i></div>
-                                    <a href="/ext"><h3>Manage Extensions</h3></a>
+                                    <a href="/showmasks"><h3>View Saved Masks</h3></a>
                                     <p class="lead mb-0">Manage junk extensions!</p>
                                 </div>
                             </div>

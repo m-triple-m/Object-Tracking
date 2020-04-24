@@ -53,11 +53,15 @@ def select():
 
 @app.route('/trackobject')
 def track():
-    return render_template('track.html')
+	if not session.get('mask_values'):
+		return redirect('/upload')
+	return render_template('track.html')
 
 
 @app.route('/mask')
 def mask():
+	if not session.get('mask_file'):
+		return redirect('/upload')
 	return render_template('mask.html', imgpath = f"static/uploads/{session.get('mask_file')}")
 
 
@@ -148,3 +152,14 @@ if __name__ == "__main__":
 # 5) view display manager
 # 6) object detection
 # 7) Tracking system
+
+
+
+
+num = 3276
+if num%7 == 0 and not num%13 == 0:
+	print('good')
+elif num%7 == 0:
+	print('great')
+else:
+	print('awesome')
